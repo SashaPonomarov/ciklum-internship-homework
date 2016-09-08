@@ -1,0 +1,13 @@
+.book-search {
+    width: 95%;
+    display: flex;
+    margin: 30px auto;
+    height: 30px;
+}
+.book-search-field {
+    flex-grow: 1;
+}
+.book-search-button {
+    border: none;
+    background-color: #eedb59;
+}
