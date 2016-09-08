@@ -31,6 +31,4 @@ module.exports = {
     ],
 
     postcss: [ autoprefixer({ browsers: ['last 3 versions', '> 1%'] }) ],
-
-    watch: true
 };
