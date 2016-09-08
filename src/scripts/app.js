@@ -2,7 +2,13 @@
 
 require("../scss/style.scss")
 let {books} = require("../json/books.json")
-let listBooks = require("./listBooks.js")
-let bookList = listBooks(books)
+const listBooks = require("./listBooks.js")
+const findBooks = require("./findBooks.js")
 
-document.getElementsByClassName("books-page-content")[0].appendChild(bookList)
+let bookList = listBooks(books)
+let pageContent = document.getElementsByClassName("books-page-content")[0]
+pageContent.appendChild(bookList)
+
+document.getElementById('search-button').onclick = () => {
+    findBooks(books)
+}
