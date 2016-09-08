@@ -1,4 +1,5 @@
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var autoprefixer = require('autoprefixer');
 
 module.exports = {
     entry: __dirname + "/src/scripts/app.js",
@@ -8,7 +9,7 @@ module.exports = {
     },
     module: {
         loaders: [
-            { test: /\.scss$/, loader: "style!css!sass" },
+            { test: /\.scss$/, loader: "style!css!postcss!sass" },
             { test: /\.json$/, loader: "json" },
         ]
     },
@@ -19,6 +20,8 @@ module.exports = {
       {from: "src/img/", to: "img/"}
     ]),
     ],
+
+    postcss: [ autoprefixer({ browsers: ['last 3 versions', '> 1%'] }) ],
 
     // watch: true
 };
