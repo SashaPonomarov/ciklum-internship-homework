@@ -1,0 +1,22 @@
+.books-page-header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding-bottom: 20px;
+    background-color: #eedb59;
+    color: #2f2e2d;
+    text-align: center;
+    h1 {
+        font-size: 55px;
+        font-weight: bold;
+        span {
+            font-size: 35px;
+            font-style: italic;
+        }
+    }
+    h2 {
+        font-size: 13px;
+        line-height: 22px;
+    }
+}
