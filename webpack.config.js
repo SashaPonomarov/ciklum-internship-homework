@@ -1,5 +1,7 @@
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var autoprefixer = require('autoprefixer');
+var path = require('path');
+
 
 module.exports = {
     entry: __dirname + "/src/scripts/app.js",
@@ -11,6 +13,13 @@ module.exports = {
         loaders: [
             { test: /\.scss$/, loader: "style!css!postcss!sass" },
             { test: /\.json$/, loader: "json" },
+            { test: /\.js$/,  
+                include: path.resolve(__dirname, "src/scripts"), 
+                loader: "babel",
+                query: {
+                    presets: ['es2015']
+                }
+            }
         ]
     },
 
