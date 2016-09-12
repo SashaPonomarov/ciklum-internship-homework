@@ -5,9 +5,11 @@ function isObject (obj) {
 }
 
 function deepExtend(target) {
+    if (!isObject(target)) throw new TypeError('Target is (' + target + '), not an Object')
     for (let i = 1; i < arguments.length; i++)
         {
             let from = arguments[i]
+            if (!isObject(from)) throw new TypeError('Argument ' + (i+1) + ' is (' + from + '), not an Object')
             Object.keys(from).forEach(function(key) {
                 if (isObject(target[key]) && isObject(from[key]))
                 {
