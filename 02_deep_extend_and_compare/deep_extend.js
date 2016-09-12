@@ -9,7 +9,14 @@ function deepExtend(target) {
         {
             let from = arguments[i]
             Object.keys(from).forEach(function(key) {
+                if (isObject(target[key]) && isObject(from[key]))
+                {
+                    deepExtend(target[key], from[key])
+                }
+                else
+                {
                     target[key] = from[key]
+                }
             })
         }
     return target
