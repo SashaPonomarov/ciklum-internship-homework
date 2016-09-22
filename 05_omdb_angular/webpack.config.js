@@ -27,7 +27,7 @@ var webpackConfig = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            filename: '../index.html',
+            filename: 'index.html',
             template: 'index.html'
         }),
         new ExtractTextPlugin("styles.css")
