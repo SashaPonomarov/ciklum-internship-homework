@@ -4,22 +4,24 @@
     <title>omdb search</title>
 </head>
 <body ng-cloak>
+    <div class="container-fluid omdb-content">
+        <h1>omdb search</h1>
 
-    <h1>omdb search</h1>
+        <form class="search-form">
+            <div class="col-lg-12">
+              <div class="input-group">
+                <input type="text" class="form-control search-input" placeholder="Movie title" ng-model="searchInput">
+                <span class="input-group-btn">
+                    <button class="search-button btn btn-secondary" type="submit" ng-click="search()">
+                        Search
+                    </button>
+                </span>
+              </div>
+            </div>
+        </form>
+        <ul class="selected-movies row m-t-2" ng-include="'partials/selectedCards.html'"></ul>
 
-    <form class="search-form">
-        <div class="col-lg-12">
-          <div class="input-group">
-            <input type="text" class="form-control search-input" placeholder="Movie title" ng-model="searchInput">
-            <span class="input-group-btn">
-                <button class="search-button btn btn-secondary" type="submit" ng-click="search()">
-                    Search
-                </button>
-            </span>
-          </div>
-        </div>
-    </form>
-
-    <ul class="search-results row m-t-2" ng-include="'partials/cards.html'" ng-controller="SearchMovies as mCtrl"></ul>
+        <ul class="search-results row m-t-2" ng-include="'partials/cards.html'"></ul>
+    </div>
 </body>
 </html>
