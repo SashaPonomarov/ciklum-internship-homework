@@ -5,7 +5,7 @@
 </head>
 <body ng-cloak>
     <div class="container-fluid omdb-content">
-        <h1>omdb search</h1>
+        <h1 class="text-xs-center">omdb search</h1>
 
         <form class="search-form">
             
@@ -19,6 +19,19 @@
                 </select>
                 <label for="searchYear" class="text-xs-right col-sm-2 col-form-label">Year</label>
                 <input class="form-control col-sm-2" id="searchYear" type="text" ng-model="searchYear">
+
+                <div class="col-sm-4 text-xs-center">
+                    <span>Sort by:</span>
+                    <label class="form-check-inline">
+                      <input class="form-check-input" type="radio" ng-model="order" name="order" id="orderYear" value="Year"> Year
+                    </label>
+                    <label class="form-check-inline">
+                      <input class="form-check-input" type="radio" ng-model="order" name="order" id="orderTitle" value="Title"> Title
+                    </label>
+                    <label class="form-check-inline">
+                      <input class="form-check-input" type="radio" ng-model="order" name="order" id="orderImdbID" value="imdbID"> imdbID
+                    </label>
+                </div>
             </div>
             <div class="col-lg-12">
               <div class="input-group">
