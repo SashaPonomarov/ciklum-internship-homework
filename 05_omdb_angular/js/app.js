@@ -14,12 +14,18 @@ angular.module("omdb-search", [])
         } else {
             $scope.selected = []
         }
-        console.log('selected', $scope.selected)        
+
 
         $scope.search = function() {
-          $http.get("http://www.omdbapi.com/?s=" + $scope.searchInput)
-          .then(function(response){ 
-                $scope.movies = response.data 
+            $scope.currentPage = $scope.currentPage || 1
+            let options = "&type=" + ($scope.searchType || "") + 
+                "&y=" + ($scope.searchYear || "") + 
+                "&page=" + $scope.currentPage
+            $http.get("http://www.omdbapi.com/?s=" + $scope.searchInput + options)
+            .then(function(response){
+                if (response.data.Response) {
+                    $scope.movies = response.data
+                } 
             })
         }
 
@@ -37,9 +43,14 @@ angular.module("omdb-search", [])
         }
 
         $scope.$watch('selected', function() {
-            console.log($scope.selected)
             localStorage.setItem('selected', JSON.stringify($scope.selected))
         }, true)
+
+        $scope.$watch('currentPage', function(newValue, oldValue) {
+            if (newValue !== oldValue) {
+                $scope.search()
+            }
+        })
 
         $scope.notSelected = function(movie) {
             return !$scope.selected.some((select) => {
@@ -47,6 +58,18 @@ angular.module("omdb-search", [])
             })
         }
 
+        $scope.changePage = function(pageNumber) {
+            $scope.currentPage = pageNumber
+        }
+    })
+    .filter('range', function() {
+      return function(input, total) {
+        total = parseInt(total)
+        for (var i=1; i<=total+1; i++) {
+          input.push(i)
+        }
+        return input
+      }
     })
 
 angular.bootstrap(document, ["omdb-search"])
