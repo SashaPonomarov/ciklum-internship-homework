@@ -1,4 +1,4 @@
-export default function MoviesSearchCtrl ($scope, $http) {
+export default function MoviesSearchCtrl ($scope, $http, MovieService) {
 
         let stored = localStorage.getItem('selected')
         if (stored) {
@@ -10,15 +10,13 @@ export default function MoviesSearchCtrl ($scope, $http) {
 
         $scope.search = function() {
             $scope.currentPage = $scope.currentPage || 1
-            let options = "&type=" + ($scope.searchType || "") + 
-                "&y=" + ($scope.searchYear || "") + 
-                "&page=" + $scope.currentPage
-            $http.get("http://www.omdbapi.com/?s=" + $scope.searchInput + options)
-            .then(function(response){
-                if (response.data.Response) {
-                    $scope.movies = response.data
-                } 
-            })
+            let options = {
+                searchInput: $scope.searchInput,
+                searchType: $scope.searchType || "",
+                searchYear: $scope.searchYear || "",
+                currentPage: $scope.currentPage
+            }
+            MovieService.search(options).then((movies) => {$scope.movies = movies})
         }
 
         $scope.select = function(imdbId) {
