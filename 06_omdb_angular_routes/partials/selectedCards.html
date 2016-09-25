@@ -1,0 +1,10 @@
+<li ng-repeat="movie in selected" class="movie-container text-xs-center col-lg-2 col-md-3 col-sm-4 col-xs-6">
+    <div class="card movie" data-imdb-id="{{movie.imdbID}}" ng-click="deselect(movie.imdbID)">
+        <img class="card-img-top img-fluid" ng-src="{{(movie.Poster === 'N/A') ? 
+                'http://placehold.it/260x360' : movie.Poster}}" alt="{{movie.Title}}">
+        <div class="card-block">
+          <h5 class="card-title">{{ movie.Title }}</h5>
+          <h6>{{ movie.Year }}</h6>
+        </div>
+    </div>
+</li>

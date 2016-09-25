@@ -1,0 +1,51 @@
+<form class="search-form">
+    
+    <div class="form-group row">
+        <label for="searchType" class="text-xs-right col-sm-2 col-form-label">Looking for</label>
+        <select class="form-control col-sm-2" id="searchType" ng-model="searchType">
+            <option value="" selected>Anything</option>
+            <option value="movie" selected>Movie</option>
+            <option value="series">Series</option>
+            <option value="episode">Episode</option>
+        </select>
+        <label for="searchYear" class="text-xs-right col-sm-2 col-form-label">Year</label>
+        <input class="form-control col-sm-2" id="searchYear" type="text" ng-model="searchYear">
+
+        <div class="col-sm-4 text-xs-center">
+            <span>Sort by:</span>
+            <label class="form-check-inline">
+              <input class="form-check-input" type="radio" ng-model="order" name="order" id="orderYear" value="Year"> Year
+            </label>
+            <label class="form-check-inline">
+              <input class="form-check-input" type="radio" ng-model="order" name="order" id="orderTitle" value="Title"> Title
+            </label>
+            <label class="form-check-inline">
+              <input class="form-check-input" type="radio" ng-model="order" name="order" id="orderImdbID" value="imdbID"> imdbID
+            </label>
+        </div>
+    </div>
+    <div class="col-lg-12">
+      <div class="input-group">
+        <input type="text" class="form-control search-input" placeholder="Movie title" ng-model="searchInput">
+        <span class="input-group-btn">
+            <button class="search-button btn btn-secondary" type="submit" ng-click="search()">
+                Search
+            </button>
+        </span>
+      </div>
+    </div>
+</form>
+<ul class="selected-movies row m-t-2" ng-include="'partials/selectedCards.html'"></ul>
+<p>{{"Found " + (movies.totalResults || "0") + " results"}}</p>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item {{pageNumber === currentPage ? 'active' : ''}}" ng-repeat="pageNumber in [] | range:movies.totalResults/10">
+            <a ng-click="changePage(pageNumber)" class="page-link" href="#">{{pageNumber}}</a>
+        </li>
+    </ul>
+</nav>
+
+<ul class="search-results row m-t-2" ng-include="'partials/cards.html'"></ul>
+
+<a href="#/movie">movie</a>
