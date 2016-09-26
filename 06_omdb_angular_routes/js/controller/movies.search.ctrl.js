@@ -1,4 +1,4 @@
-export default function MoviesSearchCtrl ($scope, $http, MovieService) {
+export default function MoviesSearchCtrl ($scope, MovieService) {
 
         let stored = localStorage.getItem('selected')
         if (stored) {

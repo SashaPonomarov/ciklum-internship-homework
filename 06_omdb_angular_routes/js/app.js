@@ -23,16 +23,21 @@ angular.module('omdb-search', [ngRoute])
                 controller: 'MoviesSearchCtrl',
                 reloadOnSearch: false
             })
-            .when('/movie', {
+            .when('/movie/:id', {
                 templateUrl: 'partials/movie.html',
-                controller: 'MovieDetailCtrl'
+                controller: 'MovieDetailCtrl',
+                resolve: {
+                    movie: function ($route, MovieService) {
+                        return MovieService.detail($route.current.params.id);
+                    }
+                }
             })
             .otherwise({
                 redirectTo: '/'
             })
     })
-    .controller('MovieDetailCtrl', ['$scope', '$http', MovieDetailCtrl])
-    .controller('MoviesSearchCtrl', ['$scope', '$http', 'MovieService', MoviesSearchCtrl])
+    .controller('MovieDetailCtrl', ['$scope', 'MovieService', 'movie', MovieDetailCtrl])
+    .controller('MoviesSearchCtrl', ['$scope', 'MovieService', MoviesSearchCtrl])
     .service('MovieService', ['$http', MovieService])
     .filter('range', function() {
       return function(input, total) {

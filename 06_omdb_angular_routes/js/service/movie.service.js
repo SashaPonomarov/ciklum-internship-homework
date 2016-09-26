@@ -15,6 +15,15 @@ export default class MovieService {
                 })
     }
 
+    detail(id) {
+        let optionString = "?i=" + id + "&plot=full"
+        return this.$http.get(this.baseURL + optionString)
+                .then(function(response){
+                    if (response.data.Response) {
+                        return response.data
+                    } 
+                })
+    }
 
     
 }
