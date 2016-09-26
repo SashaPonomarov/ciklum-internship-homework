@@ -1,6 +1,6 @@
 # Ciklum JS Internship homework
 
-## Task 04, omdb API search using Angular
+## Task 06, omdb API search using Angular with routing
 
 To run the app:
 - clone repository and cd into it
