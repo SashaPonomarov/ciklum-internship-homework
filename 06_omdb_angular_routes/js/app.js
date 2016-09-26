@@ -15,7 +15,13 @@ angular.module('omdb-search', [ngRoute])
         $routeProvider
             .when('/', {
                 templateUrl: 'partials/search.html',
-                controller: 'MoviesSearchCtrl'
+                controller: 'MoviesSearchCtrl',
+                reloadOnSearch: false
+            })
+            .when('/search/page/:page', {
+                templateUrl: 'partials/search.html',
+                controller: 'MoviesSearchCtrl',
+                reloadOnSearch: false
             })
             .when('/movie', {
                 templateUrl: 'partials/movie.html',
