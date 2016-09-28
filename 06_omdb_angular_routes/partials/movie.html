@@ -1,10 +1,47 @@
-Movie
 
-<a href="#/">search page</a>
+<div class="row">
+    <div class="col-sm-1">
+        <a href="#/">Back to search page</a>
+    </div>
+    <div class="col-sm-3 text-xs-right">
+        <img src="{{movie.Poster}}">
+    </div>
+    <div class="col-sm-6">
+        <h1>{{movie.Title}}</h1>
+        <h2>{{movie.Year}}</h2>
+        <div>{{movie.Plot}}</div>
+    </div>
+</div>
 
-<div>
-    <h1>{{movie.Title}}</h1>
-    <h2>{{movie.Year}}</h2>
-    <img src="{{movie.Poster}}">
-    <div>{{movie.Plot}}</div>
+<div class="row comments m-t-3">
+    <ul class="col-md-8 offset-md-2">
+        <li ng-repeat="comment in comments" class="row m-t-2">
+            <div class="col-md-3 text-xs-right">
+                <h5>{{comment.name}}:</h5>
+                <small class="font-italic text-muted">
+                    {{comment.date | date:'y MMM d h:mm'}}
+                </small>
+            </div>
+            <p class="col-md-8">{{comment.text}}</p>
+        </li>
+    </ul>
+</div>
+
+<div class="row add-comment">
+    <form name="commentForm" class="col-md-6 offset-md-3 m-b-3">
+        <div class="form-group">
+            <label for="comment-name">Your name</label>
+            <input class="form-control" type="text" id="comment-name" ng-model="commentName">
+        </div>
+
+        <div class="form-group">
+            <label for="comment-text">Comment</label>
+            <textarea class="form-control" id="comment-text" rows="2" ng-model="commentText"></textarea>
+        </div>
+
+        <button class="comment-button btn btn-primary" type="submit" ng-click="addComment()">
+            Post
+        </button>
+
+    </form>
 </div>

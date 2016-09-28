@@ -1,11 +1,6 @@
 export default function MoviesSearchCtrl ($scope, MovieService) {
 
-        let stored = localStorage.getItem('selected')
-        if (stored) {
-            $scope.selected = JSON.parse(stored)
-        } else {
-            $scope.selected = []
-        }
+        $scope.selected = MovieService.getSelected()
 
 
         $scope.search = function() {
@@ -33,14 +28,9 @@ export default function MoviesSearchCtrl ($scope, MovieService) {
         }
 
         $scope.$watch('selected', function() {
-            localStorage.setItem('selected', JSON.stringify($scope.selected))
+            MovieService.setSelected($scope.selected)
         }, true)
 
-        $scope.$watch('currentPage', function(newValue, oldValue) {
-            if (newValue !== oldValue) {
-                $scope.search()
-            }
-        })
 
         $scope.notSelected = function(movie) {
             return !$scope.selected.some((select) => {
@@ -50,5 +40,6 @@ export default function MoviesSearchCtrl ($scope, MovieService) {
 
         $scope.changePage = function(pageNumber) {
             $scope.currentPage = pageNumber
+            $scope.search()
         }
     }

@@ -25,5 +25,42 @@ export default class MovieService {
                 })
     }
 
+    getSelected() {
+        let stored = localStorage.getItem('selected')
+        stored = JSON.parse(stored) || []
+        return stored
+    }
+
+    setSelected(selected) {
+        localStorage.setItem('selected', JSON.stringify(selected))
+    }
+
+    getComments(id) {
+        let stored = localStorage.getItem('comments')
+        stored = JSON.parse(stored) || []
+        let result = stored.find((movie) => {
+            return movie.id === id
+        })
+        if (result) {
+            result = result.comments
+        }
+        return result
+    }
+
+    setComment(id, comment) {
+
+        let stored = localStorage.getItem('comments')
+        stored = JSON.parse(stored) || []
+        let index = stored.findIndex((movie) => {
+            return movie.id === id
+        })
+        if (index !== -1) {
+            stored[index].comments.push(comment)
+        } else {
+            stored.push({id: id, comments: [comment]})
+        }
+        localStorage.setItem('comments', JSON.stringify(stored))
+    }
+
     
 }
