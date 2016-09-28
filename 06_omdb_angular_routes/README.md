@@ -11,3 +11,11 @@ To run the app:
 or
 - run `npm run build` to build the app into `build` folder
 - open `build/index.html` in your browser
+
+
+In the app you can 
+- search for movies using different filters at the top
+- add movies to 'favorites' by clicking on + sign on the top right corner of the movie card
+- view details about a movie by clicking on the movie card
+- add comments at the bottom of the movie page
+- rate the movie by clicking on the stars under the movie title on the movie page
