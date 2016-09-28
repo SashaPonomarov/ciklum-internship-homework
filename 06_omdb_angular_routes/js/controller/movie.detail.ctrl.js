@@ -1,8 +1,9 @@
 export default function MovieDetailCtrl ($scope, MovieService, movie) {
     $scope.movie = movie
     $scope.comments = MovieService.getComments($scope.movie.imdbID)
+    $scope.rating = MovieService.getRating($scope.movie.imdbID)
 
-    $scope.addComment = function () {
+    $scope.addComment = function() {
         let date = new Date()
         MovieService.setComment($scope.movie.imdbID, {
                                 name: $scope.commentName, 
@@ -15,4 +16,9 @@ export default function MovieDetailCtrl ($scope, MovieService, movie) {
         $scope.commentForm.$setPristine()
         $scope.commentForm.$setUntouched()
     }
+
+    $scope.setRating = function() {
+        MovieService.setRating($scope.movie.imdbID, $scope.rating)
+    }
+
 }

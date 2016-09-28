@@ -48,7 +48,6 @@ export default class MovieService {
     }
 
     setComment(id, comment) {
-
         let stored = localStorage.getItem('comments')
         stored = JSON.parse(stored) || []
         let index = stored.findIndex((movie) => {
@@ -62,5 +61,28 @@ export default class MovieService {
         localStorage.setItem('comments', JSON.stringify(stored))
     }
 
-    
+    getRating(id) {
+        let stored = localStorage.getItem('ratings')
+        stored = JSON.parse(stored) || []
+        let result = stored.find((movie) => {
+            return movie.id === id
+        })
+        if (result) {
+            result = result.rating
+        }
+        return result
+    }
+    setRating(id, rating) {
+        let stored = localStorage.getItem('ratings')
+        stored = JSON.parse(stored) || []
+        let index = stored.findIndex((movie) => {
+            return movie.id === id
+        })
+        if (index !== -1) {
+            stored[index].rating = rating
+        } else {
+            stored.push({id, rating})
+        }
+        localStorage.setItem('ratings', JSON.stringify(stored))
+    }
 }

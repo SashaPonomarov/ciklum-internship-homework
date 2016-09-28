@@ -9,9 +9,17 @@
     <div class="col-sm-6">
         <h1>{{movie.Title}}</h1>
         <h2>{{movie.Year}}</h2>
+        <div class="rating">
+            <label class="rating-star" ng-class="{'active' : val <= $parent.rating}" ng-repeat="val in [5, 4, 3, 2, 1]" ng-click="setRating()">
+                <input type="radio" class="rating-input" ng-model="$parent.rating"
+                    id="rating-{{val}}" name="rating" value="{{val}}" >
+            </label>
+        </div>
         <div>{{movie.Plot}}</div>
     </div>
 </div>
+
+
 
 <div class="row comments m-t-3">
     <ul class="col-md-8 offset-md-2">
