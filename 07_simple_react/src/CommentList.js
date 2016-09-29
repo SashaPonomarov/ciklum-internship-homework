@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Comment from './Comment';
 import CommentForm from './CommentForm';
+import Counter from './Counter';
 
 export default class App extends Component {
       constructor(props){
@@ -30,6 +31,7 @@ export default class App extends Component {
 
   return (
     <div>
+        <Counter data={comments.length} />
         <ul style={style}>{comments}</ul>
         <CommentForm onCommentSubmit={this.handleCommentSubmit} />
     </div>
