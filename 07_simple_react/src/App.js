@@ -12,12 +12,10 @@ export default class App extends Component {
         video: 'https://player.vimeo.com/video/183482793',
         comments: [
           {
-            id: 1,
             name: 'Mark',
             content: 'Hi, would you like to try out my new social network?'
           },
           {
-            id: 2,
             name: 'Arnie',
             content: 'I\'ll be back'
           }
@@ -34,7 +32,6 @@ export default class App extends Component {
         video: 'https://player.vimeo.com/video/151715092',
         comments: [
           {
-            id: 3,
             name: 'Elon',
             content: 'Mars or bust!'
           }

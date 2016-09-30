@@ -23,7 +23,6 @@ export default class App extends Component {
     e.preventDefault();
     var name = this.state.name.trim();
     var content = this.state.content.trim();
-    console.log(this.state)
     if (!content || !name) {
       return;
     }
@@ -37,20 +36,29 @@ export default class App extends Component {
 
 
   render() {
-   const style = {
-    margin: 10
-  }
-   const inputStyle = {
-    height: 40
-  }
+    const style = {
+      margin: 10,
+      display: 'flex'
+    }
+    const inputStyle = {
+      height: 40,
+      paddingLeft: 10
+    }
+    const nameStyle = {
+      width: 100
+    }
+    const textStyle = {
+      flexGrow: 1
+    }
+
   return (
       <form style={style} className="commentForm" onSubmit={this.handleSubmit}>
-        <input style={inputStyle} type="text" placeholder="Your name" value={this.state.name}
+        <input style={{...inputStyle, ...nameStyle}} type="text" placeholder="Your name" value={this.state.name}
           onChange={this.handleNameChange} />
-        <input style={inputStyle} type="text" placeholder="Comment" value={this.state.content}
+        <input style={{...inputStyle, ...textStyle}} type="text" placeholder="Comment" value={this.state.content}
           onChange={this.handleContentChange} />
-        <input style={inputStyle} type="submit" value="Post" />
+        <input type="submit" value="Post" />
       </form>
     );
-}
+  }
 }
