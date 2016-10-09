@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { fetchItems, fetchPosts, changeFlag } from '../actions/pokedex.actions';
+import { fetchItems } from '../actions/pokedex.actions';
 
 import PokedexPage from '../components/Pokedex.page.jsx';
 
@@ -12,8 +12,8 @@ class Pokedex extends Component {
     }
 
     componentDidMount() {
-        const { dispatch } = this.props
-        dispatch(fetchItems())
+        const { dispatch, firstTime } = this.props
+        if (firstTime) {dispatch(fetchItems())}
     }
 
     render() {
@@ -35,7 +35,8 @@ Pokedex.propTypes = {
 
 const mapStateToProps = (state) => ({
         isFetching: state.pokedex.isFetching,
-        next: state.pokedex.next
+        next: state.pokedex.next,
+        firstTime: state.pokedex.firstTime
     }
 )
 
