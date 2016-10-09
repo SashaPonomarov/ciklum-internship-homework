@@ -9,12 +9,7 @@ import routes from './config/appRoutes.jsx';
 import configureStore from './store/root.store';
 import appHistory from './config/appHistory';
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
 
-
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
 
 
 const initialState = {};
@@ -26,12 +21,7 @@ let unsubscribe = store.subscribe(() =>
 
 ReactDOM.render(
     <Provider store={store}>
-        <MuiThemeProvider>
-            <div style={{marginBottom: 60}}>
-                <AppBar title="Pokedex" showMenuIconButton={false} />
-                <Router children={routes} history={appHistory} />
-            </div>
-        </MuiThemeProvider>
+        <Router children={routes} history={appHistory} />
     </Provider>,
 
     document.getElementById('react-view')

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-import common from './common.reducer';
+import favorites from './favorites.reducer';
 import pokedex from './pokedex.reducer';
 
 const rootReducer = combineReducers({
-    common, pokedex
+    favorites, pokedex
 });
 
 export default rootReducer;
