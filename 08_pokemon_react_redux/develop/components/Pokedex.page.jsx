@@ -6,9 +6,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import CircularProgress from 'material-ui/CircularProgress';
 import LinearProgress from 'material-ui/LinearProgress';
 
-
-
 class PokedexPage extends Component {
+    
     render() {
         const { handleLoadClick, isFetching, next } = this.props;
         return (

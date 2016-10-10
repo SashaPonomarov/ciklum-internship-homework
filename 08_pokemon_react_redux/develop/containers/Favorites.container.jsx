@@ -8,9 +8,9 @@ import FavoritesPage from '../components/Favorites.page.jsx';
 
 class Favorites extends Component {
     render() {
-
+        let { favorites } = this.props;
         return (
-            <FavoritesPage
+            <FavoritesPage favorites={favorites}
             />
         );
     }
@@ -19,12 +19,13 @@ class Favorites extends Component {
 Favorites.propTypes = {
 };
 
-const mapStateTotProps = (state, ownProps) => ({
+const mapStateToProps = (state, ownProps) => ({
     ...ownProps,
+    favorites: state.favorites.ids
 });
 
 const mapDispatchToProps = (dispatch, ownPorps) => ({
     ...ownPorps,
 });
 
-export default connect(mapStateTotProps, mapDispatchToProps)(Favorites);
+export default connect(mapStateToProps, mapDispatchToProps)(Favorites);

@@ -7,10 +7,10 @@ import Pokedex from '../containers/Pokedex.container.jsx';
 
 export default (
     <Route path="/" component={App}>
-        <IndexRedirect to="pokedex" />
+        <IndexRedirect to="pokemons" />
 
         
-        <Route path="pokedex" component={Pokedex} />
-        <Route path="pokedex/favorites" component={Favorites} />
+        <Route path="pokemons" component={Pokedex} />
+        <Route path="pokemons/favorites" component={Favorites} />
     </Route>
 );

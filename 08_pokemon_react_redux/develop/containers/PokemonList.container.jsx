@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { addFavorite, removeFavorite } from '../actions/favorites.actions';
 
 import {GridList, GridTile} from 'material-ui/GridList';
 
@@ -27,9 +28,24 @@ class PokemonList extends Component {
           }
         };
 
-        let { items } = this.props;
-        items = items || []
-        let pokemons = items.map(item => <PokemonCard {...item} key={item.national_id} />)
+        let { items, handleCardClick, favorites, mode } = this.props;
+        
+        if (mode === 'favorites') {
+            items = items.filter((item) => {
+                return (favorites.indexOf(item.national_id) !== -1)
+            })
+        }
+
+        let pokemons = items.map(item => {
+            return (
+                <PokemonCard 
+                    {...item}
+                    favorite={favorites.indexOf(item.national_id) !== -1}
+                    handleCardClick={handleCardClick}
+                    key={item.national_id} 
+                />
+            )
+        })
         let spacers = new Array(4).fill('').map( (val, i) => <div key={i} style={styles.spacer}></div> )
         return <div style={styles.pokemonList}>
                     {pokemons}
@@ -39,9 +55,26 @@ class PokemonList extends Component {
     }
 }
 
+PokemonList.propTypes = {
+    handleCardClick: PropTypes.func,
+}
+
 const mapStateToProps = (state) => ({
-        items: state.pokedex.items
+        items: state.pokedex.items,
+        favorites: state.favorites.ids
     }
 )
+const mapDispatchToProps = (dispatch, ownPorps) => ({
+    ...ownPorps,
+    handleCardClick: (id, isFavorite) => {
+        if (isFavorite) {
+            return dispatch(removeFavorite(id))
+        } else {
+            return dispatch(addFavorite(id))
+        }
+    },
+    dispatch
+})
 
-export default connect(mapStateToProps)(PokemonList);
+
+export default connect(mapStateToProps, mapDispatchToProps)(PokemonList);

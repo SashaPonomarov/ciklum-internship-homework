@@ -30,7 +30,6 @@ class Pokedex extends Component {
 
 Pokedex.propTypes = {
     handleLoadClick: PropTypes.func,
-    flag: PropTypes.bool
 }
 
 const mapStateToProps = (state) => ({
