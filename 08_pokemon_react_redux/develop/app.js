@@ -15,9 +15,6 @@ import appHistory from './config/appHistory';
 const initialState = {};
 const store = configureStore(initialState);
 
-let unsubscribe = store.subscribe(() =>
-  console.log(store.getState())
-)
 
 ReactDOM.render(
     <Provider store={store}>
