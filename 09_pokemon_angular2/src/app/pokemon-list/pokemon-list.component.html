@@ -1,7 +1,17 @@
+<ul class="pokemon-types-list">
+  <li *ngFor="let type of uniqueTypes" (click)="toggleType(type)" 
+    [class]="(selectedTypes.indexOf(type) !== -1) ? 'selected' : ''">
+    {{ type }}
+  </li>
+</ul>
+
 <ul class="pokemon-list">
-  <li *ngFor="let pokemon of pokemons" class="pokemon-list-item">
+  <li *ngFor="let pokemon of filteredPokemons" class="pokemon-list-item">
     <h1>{{ pokemon.name }}</h1>
     <img [src]="pokemon.image">
+    <ul class="pokemon-types-list">
+      <li *ngFor="let type of pokemon.types">{{ type.name }}</li>
+    </ul>
   </li>
 </ul>
 <div class="progress-bar" *ngIf="isFetching">Loading...</div>

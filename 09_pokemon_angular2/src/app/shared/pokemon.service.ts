@@ -21,7 +21,6 @@ export class PokemonService {
 
 
   getPokemons(resource): Observable<PokemonResponse> {
-    console.log('start fetching from ', resource)
     return this.http.get(pokeapiURL+resource)
                     .map(this.extractData)
                     .catch(this.handleError);
@@ -36,7 +35,8 @@ export class PokemonService {
           return {
             name: pokemon.name,
             id: pokemon.national_id,
-            image: `${imageURL}${pokemon.national_id}.png`
+            image: `${imageURL}${pokemon.national_id}.png`,
+            types: pokemon.types
           };
       })
     } 

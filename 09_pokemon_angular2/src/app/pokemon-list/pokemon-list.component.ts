@@ -10,8 +10,11 @@ import { Pokemon } from '../shared/pokemon'
 export class PokemonListComponent implements OnInit {
 
   pokemons: Pokemon[] = [];
+  filteredPokemons: Pokemon[] = [];
   next: string;
   isFetching: boolean = true;
+  selectedTypes: string[] = [];
+  uniqueTypes: string[] = [];
 
   constructor(private PokemonService: PokemonService) { }
 
@@ -24,12 +27,49 @@ export class PokemonListComponent implements OnInit {
     this.PokemonService.getPokemons(resource)
                        .subscribe(
                            data => {
-                             console.log(data.pokemons)
                              this.pokemons = [...this.pokemons, ...data.pokemons];
+                             this.filteredPokemons = this.pokemons;
                              this.next = data.next;
                              this.isFetching = false;
+                             this.uniqueTypes = this.findUniqueTypes(data.pokemons, this.uniqueTypes);
                            }
                          );
+  }
+
+  findUniqueTypes(pokemons, uniqueTypes) {
+    pokemons.map((pokemon) => {
+      let typesChunk = pokemon.types.filter((type) => {
+                          return !uniqueTypes.some((unique) => {
+                            return unique === type.name;
+                          })
+                        })
+      typesChunk.map((type) => {
+         uniqueTypes.push(type.name);
+      })
+    })
+    return uniqueTypes;
+  }
+
+  toggleType(type) {
+    let index:number = this.selectedTypes.indexOf(type);
+    if (index === -1) {
+      this.selectedTypes.push(type);
+    } else {
+      this.selectedTypes.splice(index, 1);
+    }
+    this.filteredPokemons = this.filterPokemons(this.selectedTypes, this.pokemons);
+
+  }
+
+  filterPokemons(selectedTypes, pokemons) {
+    if (selectedTypes.length === 0) {
+      return pokemons;
+    }
+    return pokemons.filter((pokemon) => {
+      return pokemon.types.some((pokemonType) => {
+        return selectedTypes.indexOf(pokemonType.name) !== -1
+      })
+    })
   }
 
 }

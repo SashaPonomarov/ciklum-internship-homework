@@ -44,3 +44,17 @@
   text-align: center;
   background-color: #8BC34A;
 }
+.pokemon-types-list {
+  list-style-type: none;
+}
+.pokemon-types-list li {
+  border-radius: 3px;
+  background-color: #8BC34A;
+  display: inline-block;
+  margin: 3px;
+  padding: 3px;
+  cursor: pointer;
+}
+.pokemon-types-list li.selected {
+  background-color: red;
+}
