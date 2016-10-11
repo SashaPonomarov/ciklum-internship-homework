@@ -1,0 +1,10 @@
+<ul class="pokemon-list">
+  <li *ngFor="let pokemon of pokemons" class="pokemon-list-item">
+    <h1>{{ pokemon.name }}</h1>
+    <img [src]="pokemon.image">
+  </li>
+</ul>
+<div class="progress-bar" *ngIf="isFetching">Loading...</div>
+<button class="pokemon-load-button" (click)="fetchPokemons(next)" *ngIf="!isFetching">
+  Load more
+</button>
