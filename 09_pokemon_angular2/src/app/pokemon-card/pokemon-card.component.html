@@ -1,0 +1,44 @@
+<section class="pokemon-card" *ngIf="!isFetching">
+  <img [src]="pokemon.image" class="pokemon-image">
+
+  <h1>
+    {{pokemon.name}}
+  </h1>
+  
+  <table class="pokemon-params">
+  <tr>
+    <td>Type</td>
+    <td class="type">
+      <ul class="pokemon-types-list">
+        <li *ngFor="let type of pokemon.types"
+          [class]="type.name">
+          {{ type.name }}
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>Attack</td>
+    <td class="attack">{{pokemon.attack}}</td>
+  </tr>
+  <tr>
+    <td>Defense</td>
+    <td class="defense">{{pokemon.defense}}</td>
+  </tr>
+  <tr>
+    <td>HP</td>
+    <td class="HP">{{pokemon.HP}}</td>
+  </tr>
+  <tr>
+    <td>Speed</td>
+    <td class="speed">{{pokemon.speed}}</td>
+  </tr>
+  <tr>
+    <td>Weight</td>
+    <td class="weight">{{pokemon.weight}}</td>
+  </tr>
+  </table>
+</section>
+
+
+<div class="progress-bar" *ngIf="isFetching">Loading...</div>

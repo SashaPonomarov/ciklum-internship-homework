@@ -1,4 +1,5 @@
 <ul class="pokemon-types-list selector">
+  <span>Filter pokemons by types:</span>
   <li *ngFor="let type of uniqueTypes" (click)="toggleType(type)" 
     [class]="((selectedTypes.indexOf(type) !== -1) ? 'selected ' : '') + type">
     {{ type }}
@@ -6,7 +7,9 @@
 </ul>
 
 <ul class="pokemon-list">
-  <li *ngFor="let pokemon of filteredPokemons" class="pokemon-list-item">
+  <li *ngFor="let pokemon of filteredPokemons"
+   class="pokemon-list-item" 
+   routerLink="{{'/pokemon/' + pokemon.id}}">
     <h1>{{ pokemon.name }}</h1>
     <img [src]="pokemon.image">
     <ul class="pokemon-types-list">
@@ -17,7 +20,9 @@
     </ul>
   </li>
 </ul>
-<div class="progress-bar" *ngIf="isFetching">Loading...</div>
+
 <button class="pokemon-load-button" (click)="fetchPokemons(next)" *ngIf="!isFetching">
   Load more
 </button>
+
+<div class="progress-bar" *ngIf="isFetching">Loading...</div>

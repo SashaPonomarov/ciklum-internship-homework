@@ -5,7 +5,7 @@ import { Pokemon } from './pokemon'
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch'
 
-import { pokeapiURL, imageURL } from './config'
+import { pokeapiURL, imageURL, pokeapiRes } from './config'
 
 
 interface PokemonResponse {
@@ -22,14 +22,19 @@ export class PokemonService {
 
   getPokemons(resource): Observable<PokemonResponse> {
     return this.http.get(pokeapiURL+resource)
-                    .map(this.extractData)
+                    .map(this.extractPokemons)
                     .catch(this.handleError);
   }
-  private extractData(res: Response) {
+  getPokemon(id): Observable<Pokemon> {
+    return this.http.get(pokeapiURL+pokeapiRes+id)
+                    .map(this.extractPokemon)
+                    .catch(this.handleError);
+  }
+  private extractPokemons(res: Response) {
     let body = res.json();
     let objects = body.objects;
     let next:string = body.meta.next;
-    let pokemons:Pokemon[];
+    let pokemons:Pokemon[] = [];
     if (objects) {
       pokemons = objects.map(pokemon => {
           return {
@@ -40,11 +45,25 @@ export class PokemonService {
           };
       })
     } 
-    else {
-        pokemons = [];
-    }
     return { pokemons, next };
   }
+
+  private extractPokemon(res: Response) {
+    let body = res.json();
+    let pokemon:Pokemon = {
+            name: body.name,
+            id: body.national_id,
+            image: `${imageURL}${body.national_id}.png`,
+            types: body.types,
+            attack: body.attack,
+            defense: body.defense,
+            HP: body.hp,
+            speed: body.speed,
+            weight: body.weight
+          }
+    return pokemon;
+  }
+
   private handleError (error: any) {
     let errMsg = 'error';
     console.error(errMsg);

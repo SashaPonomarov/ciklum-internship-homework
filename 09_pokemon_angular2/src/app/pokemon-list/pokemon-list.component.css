@@ -2,8 +2,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  max-width: 1000px;
-  margin: 0 auto;
   list-style-type: none;
 }
 .pokemon-list-item {
