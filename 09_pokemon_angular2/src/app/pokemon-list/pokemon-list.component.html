@@ -1,6 +1,6 @@
-<ul class="pokemon-types-list">
+<ul class="pokemon-types-list selector">
   <li *ngFor="let type of uniqueTypes" (click)="toggleType(type)" 
-    [class]="(selectedTypes.indexOf(type) !== -1) ? 'selected' : ''">
+    [class]="((selectedTypes.indexOf(type) !== -1) ? 'selected ' : '') + type">
     {{ type }}
   </li>
 </ul>
@@ -10,7 +10,10 @@
     <h1>{{ pokemon.name }}</h1>
     <img [src]="pokemon.image">
     <ul class="pokemon-types-list">
-      <li *ngFor="let type of pokemon.types">{{ type.name }}</li>
+      <li *ngFor="let type of pokemon.types"
+        [class]="type.name">
+        {{ type.name }}
+      </li>
     </ul>
   </li>
 </ul>
