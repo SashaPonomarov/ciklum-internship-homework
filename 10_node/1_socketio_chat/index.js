@@ -3,27 +3,30 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+var storage = require('./storage');
+
 var connections = [];
 var users = [];
 var log = [];
 var messages = [];
 
+storage.readMessages().then(function(data){
+  messages = data;
+});
 
 app.use(express.static('public'));
 
 
 io.on('connection', function(socket){
   connections.push(socket);
-  console.log('new connection, ' + connections.length + ' connected');
   
   socket.on('disconnect', function(){
     if (socket.username) {
       users.splice(users.indexOf(socket.username), 1);
       io.emit('update users', users);
-      console.log('user ' + socket.username + ' has disconnected, ' + users.length + ' users left')
+      console.log('user ' + socket.username + ' has disconnected, ' + users.length + ' users left in chat')
     }
-    connections.splice(connections.indexOf(socket), 1)
-    console.log('disconnected, ' + connections.length + ' connected');
+    connections.splice(connections.indexOf(socket), 1);
   });
 
   socket.on('new user', function(username, callback){
@@ -33,9 +36,7 @@ io.on('connection', function(socket){
               });
       return
     }
-
     if (users.length >= 5) {
-      console.log('denied new user')
       callback({login: false, 
                 error: 'too many users, please wait until some of them exhaust their eloquence'
               });
@@ -45,13 +46,14 @@ io.on('connection', function(socket){
     socket.username = username;
     users.push(username);
     io.emit('update users', users);
-    console.log('user ' + socket.username + ' connected, ' + users.length + ' users now')
+    console.log('user ' + socket.username + ' has connected, ' + users.length + ' users now in chat')
   });
 
   socket.on('message', function(msg, callback){
     if (msg) {
       var message = { msg: msg, user: socket.username, timestamp: new Date().getTime() };
       messages.push(message);
+      storage.saveMessages(messages);
       socket.broadcast.emit('message', message);
       callback(message);
     }
