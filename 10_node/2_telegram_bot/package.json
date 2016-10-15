@@ -1,0 +1,16 @@
+{
+  "name": "smarty-pants-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": " <Sasha Ponomarov>",
+  "license": "ISC",
+  "dependencies": {
+    "mathjs": "^3.5.3",
+    "newrelic": "^1.31.0",
+    "node-telegram-bot-api": "^0.24.0"
+  }
+}
