@@ -1,0 +1,50 @@
+.card {
+    height: 100%;
+    position: relative;
+}
+.movie-container {
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+.movie:hover {
+    cursor: pointer;
+    background-color: #d3dfe8;
+    box-shadow: 0 0 0 4px #025aa5;
+}
+.selected-movies {
+    background-color: #d3dfe8;
+}
+
+
+
+.movie-toggle {
+    display: none;
+    font-size: 60px;
+    font-weight: bold;
+    line-height: 50px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: green;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+.movie-toggle::before {
+    content: "+";
+}
+.selected .movie-toggle {
+    color: red;
+    line-height: 40px;
+}
+.selected .movie-toggle::before {
+    content: "–";
+}
+.movie:hover .movie-toggle {
+    display: block;
+}
+.movie-toggle:hover {
+    background-color: white;
+    box-shadow: -7px 7px 12px 0px rgba(0,0,0,0.32);
+}

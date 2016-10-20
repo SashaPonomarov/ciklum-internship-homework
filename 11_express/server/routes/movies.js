@@ -45,7 +45,7 @@ router.get('/:imdbID', function (req, res) {
       movie.fromCache = true;
       return res.json(movie);
     }
-    var requestURL = `http://www.omdbapi.com/?i=${imdbID}`;
+    var requestURL = `http://www.omdbapi.com/?i=${imdbID}&plot=full`;
     request(requestURL, function (error, response, body) {
       if (error) {
         return res.status(400).json({Error: error, Response: false});

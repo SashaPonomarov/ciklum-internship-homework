@@ -6,12 +6,14 @@ const MovieSchema = new Schema({
   Year: String,
   imdbID: { type : String , unique : true },
   Type: String,
+  Plot: String,
   Poster: String,
   fromCache: Boolean,
   comments: [
     {
-      username: String,
-      comment: String
+      name: String,
+      text: String,
+      date: {type: Date, default: Date.now}
     }
   ]
 });

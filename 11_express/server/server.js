@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-mongoose.connect('mongodb://login:password@url');
+mongoose.connect('mongodb://login:passwd@db');
 
 
 app.use(express.static(__dirname + '/public'));
