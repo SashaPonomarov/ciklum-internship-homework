@@ -34,23 +34,15 @@ angular.module("omdb-search", [])
                 return movie.imdbID === imdbId
             })
             $scope.selected.push(current)
+            localStorage.setItem('selected', JSON.stringify($scope.selected))
         }
 
         $scope.deselect = function(imdbId) {
             $scope.selected = $scope.selected.filter((movie) => {
                 return movie.imdbID !== imdbId
             })
-        }
-
-        $scope.$watch('selected', function() {
             localStorage.setItem('selected', JSON.stringify($scope.selected))
-        }, true)
-
-        $scope.$watch('currentPage', function(newValue, oldValue) {
-            if (newValue !== oldValue) {
-                $scope.search()
-            }
-        })
+        }
 
         $scope.notSelected = function(movie) {
             return !$scope.selected.some((select) => {
@@ -60,6 +52,7 @@ angular.module("omdb-search", [])
 
         $scope.changePage = function(pageNumber) {
             $scope.currentPage = pageNumber
+            $scope.search()
         }
     })
     .filter('range', function() {
