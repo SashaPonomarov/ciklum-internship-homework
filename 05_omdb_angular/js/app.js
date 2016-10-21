@@ -1,5 +1,4 @@
 require("../scss/style.scss")
-require("../node_modules/bootstrap/scss/bootstrap.scss")
 
 import angular from "angular"
 
