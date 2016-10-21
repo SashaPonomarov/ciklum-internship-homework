@@ -1,5 +1,4 @@
 import "../scss/style.scss"
-import "../node_modules/bootstrap/scss/bootstrap.scss"
 
 
 import angular from "angular"
