@@ -34,28 +34,18 @@ export default class MovieService {
         localStorage.setItem('selected', JSON.stringify(selected))
     }
 
-    getComments(id) {
-        let stored = localStorage.getItem('comments')
-        stored = JSON.parse(stored) || []
-        let result = stored.find((movie) => {
-            return movie.id === id
-        })
-        if (result) {
-            result = result.comments
-        }
-        return result
-    }
-
-    setComment(id, comment) {
+    addComment(id, comment) {
         var params = JSON.stringify({imdbID:id, comment:comment})
-        this.$http.post(this.baseURL, params)
-                        .then(function(response){
-                            if (response.data) {
-                                return response.data.comments
-                            } 
+        return this.$http.post(this.baseURL, params)
+                        .then((response) => {
+                            return new Promise((resolve, reject) => {
+                                resolve(response.data.comments)
+                            })
                         })
-                        .catch(function(err){
-                            console.log(err)
+                        .catch((err) => {
+                            return new Promise((resolve, reject) => {
+                                reject(err)
+                            })
                         })
     }
 

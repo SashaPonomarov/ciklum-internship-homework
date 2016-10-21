@@ -19,17 +19,15 @@ export default function MoviesSearchCtrl ($scope, MovieService) {
                 return movie.imdbID === imdbId
             })
             $scope.selected.push(current)
+            MovieService.setSelected($scope.selected)
         }
 
         $scope.deselect = function(imdbId) {
             $scope.selected = $scope.selected.filter((movie) => {
                 return movie.imdbID !== imdbId
             })
-        }
-
-        $scope.$watch('selected', function() {
             MovieService.setSelected($scope.selected)
-        }, true)
+        }
 
 
         $scope.notSelected = function(movie) {
