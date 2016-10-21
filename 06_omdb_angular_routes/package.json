@@ -12,8 +12,7 @@
   "dependencies": {
     "angular": "^1.5.8",
     "angular-resource": "^1.5.3",
-    "angular-ui-router": "^0.2.18",
-    "angular-route": "@1.5.8"
+    "angular-route": "^1.5.8"
   },
   "devDependencies": {
     "angular-animate": "^1.5.7",

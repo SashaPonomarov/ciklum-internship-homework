@@ -3,6 +3,7 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var frontend = path.resolve(__dirname, 'frontend');
 
@@ -28,7 +29,8 @@ var webpackConfig = {
             filename: 'index.html',
             template: frontend + '/index.html'
         }),
-        new ExtractTextPlugin("styles.css")
+        new ExtractTextPlugin("styles.css"),
+        new CopyWebpackPlugin([{ from: 'frontend/partials', to: 'partials' }])
     ],
     postcss: [ autoprefixer({ browsers: ['last 3 versions', '> 1%'] }) ],
 };
