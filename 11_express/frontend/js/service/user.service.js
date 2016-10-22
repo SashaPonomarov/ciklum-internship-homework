@@ -1,6 +1,6 @@
 export default class UserService {
     constructor($http) {
-        this.baseURL = "http://localhost:3000/api/user"
+        this.baseURL = "/api/user"
         this.$http = $http
     }
 

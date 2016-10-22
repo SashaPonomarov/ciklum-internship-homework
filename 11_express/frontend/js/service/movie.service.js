@@ -1,6 +1,6 @@
 export default class MovieService {
     constructor($http) {
-        this.baseURL = "http://localhost:3000/api/movies/"
+        this.baseURL = "/api/movies/"
         this.$http = $http
     }
 
