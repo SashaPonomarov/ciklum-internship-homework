@@ -11,3 +11,5 @@ To run the app:
 - navigate to localhost:3000 in your browser
 
 You will be greeted with login page. You can create a new account by clicking on the link below the form. You can add comments to movies and add movies to favorites. You can log out of current account by clicking on the link in the top right corner.
+
+You can check working app at [omdb-api-loader.herokuapp.com](https://omdb-api-loader.herokuapp.com/)
