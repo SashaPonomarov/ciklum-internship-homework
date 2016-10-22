@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register new user</title>
+  <style type="text/css">
+    .login-form {
+      width: 500px;
+      margin: 200px auto;
+      font-size: 20px;
+      text-align: center;
+    }
+    .login-form label {
+      display: block;
+    }
+    .login-form button {
+      padding: 10px 20px;
+    }
+    .login-form input {
+      margin: 30px;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+  <form class="login-form" action="/register" method="POST">
+    <p>Enter your name and password to create an account:</p>
+    <label>
+      Username
+      <input type="text" name="username">
+    </label>
+    <label>
+      Password
+      <input type="password" name="password">
+    </label>
+    <button type="submit">Register</button>
+    <p>Have an account already? <a href="/login">Click here</a> to login</p>
+  </form>
+</body>
+</html>

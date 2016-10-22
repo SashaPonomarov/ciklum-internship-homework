@@ -1,11 +1,11 @@
-export default function MovieDetailCtrl ($scope, MovieService, movie) {
+export default function MovieDetailCtrl ($scope, MovieService, UserService, movie) {
     $scope.movie = movie
     $scope.comments = movie.comments
-    $scope.rating = MovieService.getRating($scope.movie.imdbID)
+    UserService.getUser().then((user) => { $scope.username = user.username })
 
     $scope.addComment = function() {
         let comment = {
-                        name: $scope.commentName, 
+                        name: $scope.username, 
                         text: $scope.commentText,
                         date: new Date().getTime()
                       }
@@ -14,14 +14,9 @@ export default function MovieDetailCtrl ($scope, MovieService, movie) {
                         $scope.comments = comments
                     })
 
-        $scope.commentName = ""
         $scope.commentText = ""
         $scope.commentForm.$setPristine()
         $scope.commentForm.$setUntouched()
-    }
-
-    $scope.setRating = function() {
-        MovieService.setRating($scope.movie.imdbID, $scope.rating)
     }
 
 }

@@ -3,19 +3,6 @@ const request = require('request');
 const Movie = require('../models/Movie.model');
 const router = express.Router();
 
-router.get('/', function (req, res) {
-  Movie.find({})
-    .exec(function(err, movies) {
-      if(err) {
-        res.send('error' + err);
-      } else {
-        console.log(movies);
-        res.json(movies);
-      }
-    });
-  // res.sendFile(__dirname + '/index.html');
-})
-
 router.get('/search', function (req, res) {
   if (!req.query.s) {
     return res.status(400).end();
@@ -79,24 +66,5 @@ router.post('/', function (req, res) {
   });
 })
 
-router.get('/test/:imdbID', function (req, res) {
-  Movie.findOne({imdbID: req.params.imdbID}, function(err, movie) {
-    if (err) {console.log(err);}
-    else {res.json(movie);}
-  })
-  // request('http://www.omdbapi.com/?s=terminator', function (error, response, body) {
-  //   if (!error && response.statusCode == 200) {
-  //     var movies = JSON.parse(body).Search || [];
-  //     movies.map(function(item){
-  //       var movie = new Movie(item);
-  //       movie.save(function(err, movie){
-  //         if (err) return console.log(err);
-  //         console.log('save movie ', movie.Title);
-  //       });
-  //     })
-  //     res.json(body);
-  //   }
-  // })
-})
 
 module.exports = router;

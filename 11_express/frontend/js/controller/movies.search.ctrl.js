@@ -1,6 +1,6 @@
-export default function MoviesSearchCtrl ($scope, MovieService) {
+export default function MoviesSearchCtrl ($scope, MovieService, UserService) {
 
-        $scope.selected = MovieService.getSelected()
+        UserService.getFavorites().then((favorites) => {$scope.selected = favorites || [] })
 
 
         $scope.search = function() {
@@ -19,14 +19,14 @@ export default function MoviesSearchCtrl ($scope, MovieService) {
                 return movie.imdbID === imdbId
             })
             $scope.selected.push(current)
-            MovieService.setSelected($scope.selected)
+            UserService.setFavorites($scope.selected)
         }
 
         $scope.deselect = function(imdbId) {
             $scope.selected = $scope.selected.filter((movie) => {
                 return movie.imdbID !== imdbId
             })
-            MovieService.setSelected($scope.selected)
+            UserService.setFavorites($scope.selected)
         }
 
 

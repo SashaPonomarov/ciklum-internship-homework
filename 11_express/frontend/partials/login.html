@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User log-in</title>
+  <style type="text/css">
+    .login-form {
+      width: 500px;
+      margin: 200px auto;
+      font-size: 20px;
+      text-align: center;
+    }
+    .login-form label {
+      display: block;
+    }
+    .login-form button {
+      padding: 10px 20px;
+    }
+    .login-form input {
+      margin: 30px;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+  <form class="login-form" action="/login" method="POST">
+    <p>Enter your name and password for this app:</p>
+    <label>
+      Username
+      <input type="text" name="username">
+    </label>
+    <label>
+      Password
+      <input type="password" name="password">
+    </label>
+    <button type="submit">Log-in</button>
+    <p>Don't have an account yet? <a href="/register">Click here</a> to register</p>
+  </form>
+</body>
+</html>

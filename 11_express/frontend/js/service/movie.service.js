@@ -24,15 +24,6 @@ export default class MovieService {
                 })
     }
 
-    getSelected() {
-        let stored = localStorage.getItem('selected')
-        stored = JSON.parse(stored) || []
-        return stored
-    }
-
-    setSelected(selected) {
-        localStorage.setItem('selected', JSON.stringify(selected))
-    }
 
     addComment(id, comment) {
         var params = JSON.stringify({imdbID:id, comment:comment})
@@ -49,28 +40,4 @@ export default class MovieService {
                         })
     }
 
-    getRating(id) {
-        let stored = localStorage.getItem('ratings')
-        stored = JSON.parse(stored) || []
-        let result = stored.find((movie) => {
-            return movie.id === id
-        })
-        if (result) {
-            result = result.rating
-        }
-        return result
-    }
-    setRating(id, rating) {
-        let stored = localStorage.getItem('ratings')
-        stored = JSON.parse(stored) || []
-        let index = stored.findIndex((movie) => {
-            return movie.id === id
-        })
-        if (index !== -1) {
-            stored[index].rating = rating
-        } else {
-            stored.push({id, rating})
-        }
-        localStorage.setItem('ratings', JSON.stringify(stored))
-    }
 }

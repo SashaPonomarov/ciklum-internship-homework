@@ -6,8 +6,10 @@ import ngRoute from "angular-route"
 
 import MoviesSearchCtrl from "./controller/movies.search.ctrl"
 import MovieDetailCtrl from "./controller/movie.detail.ctrl"
+import UserCtrl from "./controller/user.ctrl"
 
 import MovieService from "./service/movie.service"
+import UserService from "./service/user.service"
 
 angular.module('omdb-search', [ngRoute])
     .config(function($routeProvider) {
@@ -35,9 +37,11 @@ angular.module('omdb-search', [ngRoute])
                 redirectTo: '/'
             })
     })
-    .controller('MovieDetailCtrl', ['$scope', 'MovieService', 'movie', MovieDetailCtrl])
-    .controller('MoviesSearchCtrl', ['$scope', 'MovieService', MoviesSearchCtrl])
+    .controller('MovieDetailCtrl', ['$scope', 'MovieService', 'UserService', 'movie', MovieDetailCtrl])
+    .controller('MoviesSearchCtrl', ['$scope', 'MovieService', 'UserService', MoviesSearchCtrl])
+    .controller('UserCtrl', ['$scope', 'UserService', UserCtrl])
     .service('MovieService', ['$http', MovieService])
+    .service('UserService', ['$http', UserService])
     .filter('range', function() {
       return function(input, total) {
         total = parseInt(total)
