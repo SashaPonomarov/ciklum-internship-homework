@@ -6,7 +6,7 @@ import ngRoute from "angular-route"
 
 import MoviesSearchCtrl from "./controller/movies.search.ctrl"
 import MovieDetailCtrl from "./controller/movie.detail.ctrl"
-
+import moviesList from "./directive/movies.list"
 import MovieService from "./service/movie.service"
 
 angular.module('omdb-search', [ngRoute])
@@ -37,6 +37,7 @@ angular.module('omdb-search', [ngRoute])
     })
     .controller('MovieDetailCtrl', ['$scope', 'MovieService', 'movie', MovieDetailCtrl])
     .controller('MoviesSearchCtrl', ['$scope', 'MovieService', MoviesSearchCtrl])
+    .directive('moviesList', moviesList)
     .service('MovieService', ['$http', MovieService])
     .filter('range', function() {
       return function(input, total) {
