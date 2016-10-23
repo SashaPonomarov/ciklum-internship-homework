@@ -3,7 +3,7 @@ function addCards (movies = [], container) {
     movies.forEach((movie) => {
         let poster = (movie.Poster === 'N/A') ? 
                 `http://placehold.it/260x360?text=${movie.Title.replace(/ /g, '+')}` : movie.Poster
-        cards += `<div class="movie-container text-xs-center col-xl-1 col-lg-2 col-md-3 col-sm-4 col-xs-6">
+        cards += `<div class="movie-container text-xs-center col-lg-2 col-md-3 col-sm-4 col-xs-6">
                             <div class="card movie" data-imdb-id="${movie.imdbID}">
                                 <img class="card-img-top img-fluid" src="${poster}" alt="${movie.Title}">
                                 <div class="card-block">
