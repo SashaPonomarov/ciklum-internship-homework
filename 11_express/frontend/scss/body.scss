@@ -34,11 +34,11 @@
 .movie-toggle::before {
     content: "+";
 }
-.selected .movie-toggle {
+.selected-movies .movie-toggle {
     color: red;
     line-height: 40px;
 }
-.selected .movie-toggle::before {
+.selected-movies .movie-toggle::before {
     content: "–";
 }
 .movie:hover .movie-toggle {

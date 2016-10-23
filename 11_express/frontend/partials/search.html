@@ -38,9 +38,9 @@
 
 <div class="row">
     <div class="col-md-12">
-        <ul class="selected-movies row m-t-2" ng-include="'partials/selectedCards.html'"></ul>
-        <p>{{"Found " + (movies.totalResults || "0") + " results"}}</p>
+        <movies-list class="selected-movies" items="selected" handle-click="deselect"></movies-list>
 
+        <p>{{"Found " + (movies.totalResults || "0") + " results"}}</p>
 
         <nav aria-label="Page navigation">
             <ul class="pagination">
@@ -50,6 +50,7 @@
             </ul>
         </nav>
 
-        <ul class="search-results row m-t-2" ng-include="'partials/cards.html'"></ul>
+        <movies-list class="search-results" items="movies.Search" filter-by="notSelected" 
+            order="order" handle-click="select"></movies-list>
     </div>
 </div>
