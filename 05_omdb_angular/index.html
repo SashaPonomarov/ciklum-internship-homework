@@ -44,7 +44,7 @@
               </div>
             </div>
         </form>
-        <ul class="selected-movies row m-t-2" ng-include="'partials/selectedCards.html'"></ul>
+        <movies-list class="selected-movies" items="selected" handle-click="deselect"></movies-list>
         <p>{{"Found " + (movies.totalResults || "0") + " results"}}</p>
         
         <nav aria-label="Page navigation">
@@ -55,7 +55,8 @@
             </ul>
         </nav>
 
-        <ul class="search-results row m-t-2" ng-include="'partials/cards.html'"></ul>
+        <movies-list class="search-results" items="movies.Search" filter-by="notSelected" 
+            order="order" handle-click="select"></movies-list>
     </div>
 
 

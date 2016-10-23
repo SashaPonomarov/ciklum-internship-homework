@@ -54,6 +54,19 @@ angular.module("omdb-search", [])
             $scope.search()
         }
     })
+    .directive('moviesList', function() {
+        return {
+            restrict: 'EA',
+            templateUrl: 'partials/movies-list.html',
+            scope: {
+                items: '=',
+                filterBy: '=',
+                order: '=',
+                handleClick: '&'
+            },
+            replace: true
+        }
+    })
     .filter('range', function() {
       return function(input, total) {
         total = parseInt(total)
